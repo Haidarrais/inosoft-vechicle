@@ -23,4 +23,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Route "/api/login
     $router->post('login', 'AuthController@login');
+
+    $router->get('kendaraan', 'VehicleController@index');
+    $router->post('kendaraan', 'VehicleController@store');
+    $router->get('kendaraan/{type}', 'VehicleController@getVehicleByType');
 });

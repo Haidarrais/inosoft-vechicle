@@ -3,13 +3,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Motorcycle extends Model{
-    protected $table = "motorcycles";
+class Stock extends Model{
+    protected $table = "stocks";
 
     protected $fillable = [
         'vehicle_id',
-        'transmision_id',
-        'suspension_type'
+        'qty'
     ];
 
     // public $timestamps = false;
