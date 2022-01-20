@@ -1,4 +1,4 @@
-# inosoft-vechicle
+# inosoft-vehicle
 Inosoft Test Vehicle REST API
 How to run
 1. open terminal
