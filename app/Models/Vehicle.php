@@ -10,7 +10,8 @@ class Vehicle extends Model{
         'year',
         'color',
         'price',
-        'vehicle_type'
+        'vehicle_type',
+        'vehicle_id'
     ];
 
     protected $relationMethods;
@@ -36,16 +37,21 @@ class Vehicle extends Model{
      * Get the motor that owns the Vehicle
      *
      */
-    public function motor()
+    // public function motor()
+    // {
+    //     return $this->belongsTo(Motorcycle::class, 'id', 'vehicle_id');
+    // }
+    // /**
+    //  * Get the mobil that owns the Vehicle
+    //  *
+    //  */
+    // public function mobil()
+    // {
+    //     return $this->belongsTo(Car::class, 'id', 'vehicle_id');
+    // }
+
+    public function vehicle()
     {
-        return $this->belongsTo(Motorcycle::class, 'id', 'vehicle_id');
-    }
-    /**
-     * Get the mobil that owns the Vehicle
-     *
-     */
-    public function mobil()
-    {
-        return $this->belongsTo(Car::class, 'id', 'vehicle_id');
+        return $this->morphTo();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Anik\Form\FormRequest;
+use Illuminate\Support\Str;
 
 class VehicleStoreRequest extends FormRequest
 {
@@ -29,23 +30,24 @@ class VehicleStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'year' => 'required|integer',
+            'year' => 'required|integer|digits:4',
             'color' => 'required',
             'price' => 'required|integer',
             'vehicle_type' => 'required|in:1,2'
         ];
 
-        switch (FormRequest::input('vehicle_type')) {
+        // add to this switch if you want to add more vehicle type
+        switch ($this->request->get('vehicle_type')) {
             case 1:
                 $this->message = 'Tipe kendaraan Motor membutuhkan beberapa field dibawah ini';
-                $rules['suspension_type'] = 'required|in:automatic,manual';
-                $rules['transmision_type'] = 'required';
+                $rules['suspension_type'] = 'required';
+                $rules['transmision_type'] = 'required|in:MT,AT';
                 break;
             case 2:
                 $this->message = 'Tipe kendaraan Mobil membutuhkan beberapa field dibawah ini';
                 $rules['machine'] = 'required|integer';
                 $rules['capacity'] = 'required|integer';
-                $rules['type'] = 'required|in:suv,mpv,sport';
+                $rules['car_type'] = 'required|in:suv,mpv,sport';
                 break;
             default:
                 # code...
@@ -61,32 +63,18 @@ class VehicleStoreRequest extends FormRequest
             'color.required' => 'Color harus diisi',
             'year.required' => 'Year harus diisi',
             'price.required' => 'Price harus diisi',
-            'transmision_type.required' => 'transmision_type harus diisi',
             'suspension_type.required' => 'suspension_type harus diisi',
-            'suspension_type.in' => 'Isian yang diperbolehkan Manual, Automatic',
+            'transmision_type.required' => 'transmision_type harus diisi',
+            'transmision_type.in' => 'Isian yang diperbolehkan MT, AT (dengan uppercase)',
             'machine.required' => 'Price harus diisi',
             'capacity.required' => 'Color harus diisi',
             'type.required' => 'Year harus diisi',
             'vehicle_type.required' => 'vehicle_type harus diisi',
             'vehicle_type.in' => 'isi 1 untuk Motor dam 2 untuk Mobil',
-            'type.in' => 'Isian yang diperbolehkan Suv, Mpv, Sport',
+            'car_type.in' => 'Isian yang diperbolehkan suv, mpv, sport (dengan lowercase)',
         ];
     }
 
-    /**
-     *  Filters to be applied to the input.
-     *
-     * @return array
-     */
-    public function filters(): array
-    {
-        return [
-            'color' => 'trim|lowercase',
-            'suspension_type' => 'trim|lowercase',
-            'transmision_type' => 'trim|lowercase',
-            'type' => 'trim|lowercase',
-        ];
-    }
     public function errorMessage(): string
     {
         return $this->message;

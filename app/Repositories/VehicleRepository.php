@@ -6,43 +6,34 @@ use App\Interfaces\VehicleRepositoryInterface;
 use App\Models\Vehicle;
 use App\Models\Motorcycle;
 use App\Models\Car;
-use App\Models\VehicleType;
-use Illuminate\Support\Facades\Auth;
+use App\Interfaces\StockRepositoryInterface;
+use App\Models\OrderDetail;
 
 class VehicleRepository implements VehicleRepositoryInterface 
 {
+    protected StockRepositoryInterface $stockRepository;
+
+    public function __construct(StockRepositoryInterface $stockRepository)
+    {
+        $this->stockRepository = $stockRepository;
+    }
     public function getAllVehicles() 
     {
-        $motor = Vehicle::with('motor', 'type')->whereHas('motor')->get();
-        $mobil = Vehicle::with('mobil', 'type')->whereHas('mobil')->get();
+        $vehicle = Vehicle::with('vehicle')->get()->toArray();
 
-        return response()->json([
-            'mobil' => $mobil,
-            'motor' => $motor,
-        ], 200);
+        return $vehicle;
     }
 
-    public function getAllVehicleByType($type)
+    public function getAllVehicleMotorcycles()
     {
-        try {
-            $query = Vehicle::query();
-            $query->whereHas('type', function($q) use($type){
-                $q->where('id', $type);
-                $q->orWhere('name', $type);
-            });
+            $vehicle = Vehicle::where('vehicle_type', 'App\\Models\\Motorcycle')->with('vehicle')->get()->toArray();
+            return $vehicle;
+    }
 
-            //variable t is for identifying relation name
-            $t = false;
-            
-            if(!(int)$type){ $query->with("$type"); }else{$t = VehicleType::find($type); $query->with($t?$t->name:'');};
-            $vehicle = $query->get();
-
-            return response()->json([
-                $t?$t->name:$type => $vehicle,
-            ], 200);
-        } catch (\Throwable $e) {
-            return response()->json($e->getMessage());
-        }
+    public function getAllVehicleCars()
+    {
+            $vehicle = Vehicle::where('vehicle_type', 'App\\Models\\Car')->with('vehicle')->get()->toArray();
+            return $vehicle;
     }
 
     public function getVehicleById($VehicleId) 
@@ -62,21 +53,20 @@ class VehicleRepository implements VehicleRepositoryInterface
             $vehicle->year  = $request['year'];
             $vehicle->color  = $request['color'];
             $vehicle->price  = $request['price'];
-            $vehicle->vehicle_type  = $request['vehicle_type'];
-            $vehicle->save();
-
+            
+            // add to this switch if you want to add more vehicle type
             switch ($request['vehicle_type']) {
                 case 1:
+                    $vehicle->vehicle_type  = 'App\Models\Motorcycle';
                     $detail = new Motorcycle;
-                    $detail->vehicle_id  = $vehicle->id;
                     $detail->suspension_type  = $request['suspension_type'];
                     $detail->transmision_type  = $request['transmision_type'];
                     # code...
                     break;
                 case 2:
+                    $vehicle->vehicle_type  = 'App\Models\Car';
                     $detail = new Car;
-                    $detail->vehicle_id  = $vehicle->id;
-                    $detail->type  = $request['type'];
+                    $detail->car_type  = $request['car_type'];
                     $detail->capacity  = $request['capacity'];
                     $detail->machine  = $request['machine'];
                     # code...
@@ -85,13 +75,17 @@ class VehicleRepository implements VehicleRepositoryInterface
                     # code...
                     break;
             }
-
             $detail->save();
+            $vehicle->vehicle_id  = $detail->id;
+            $vehicle->save();
+
+            $stock = $this->stockRepository->freshStock($vehicle->id);
 
             //return successful response
             return response()->json([
-                'vehicle' => $vehicle, 
-                "$vehicle->vehicle_type_name" => $detail, 
+                'vehicle' => $vehicle,
+                'stock' => $stock,
+                // "$vehicle->vehicle_type_name" => $detail, 
                 'message' => 'CREATED'], 201);
 
         } catch (\Exception $e) {
@@ -105,4 +99,49 @@ class VehicleRepository implements VehicleRepositoryInterface
     {
         return Vehicle::whereId($VehicleId)->update($newDetails);
     }
+    
+    public function getAllOrderDetails()
+    {
+        $data = OrderDetail::with('stock.vehicle', 'order')
+        ->whereHas('stock.vehicle')->get();
+        $subtotalPrice = 0;
+        $subtotalQty = 0;
+        foreach ($data as $value) {
+            $subtotalPrice += $value->stock->vehicle->price;
+            $subtotalQty += $value->qty;
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Data penjualan kendaraan',
+            'data'    => [
+                'total_omset_penjualan' => $subtotalPrice,
+                'total_jumlah_penjualan' => $subtotalQty,
+                'detail_penjualan' => $data,
+                ]
+        ],200);
+    }
+
+    public function getOrderDetailsByVehicleId($vehicleId)
+    {
+        $data = OrderDetail::with('stock.vehicle', 'order')
+        ->whereHas('stock.vehicle', function($q) use ($vehicleId){
+            $q->where('id', $vehicleId);
+        })->get();
+        $subtotalPrice = 0;
+        $subtotalQty = 0;
+        foreach ($data as $value) {
+            $subtotalPrice += $value->stock->vehicle->price;
+            $subtotalQty += $value->qty;
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Data penjualan kendaraan',
+            'data'    => [
+                'total_omset_penjualan' => $subtotalPrice,
+                'total_jumlah_penjualan' => $subtotalQty,
+                'detail_penjualan' => $data,
+                ]
+        ],200);
+    }
+
 }

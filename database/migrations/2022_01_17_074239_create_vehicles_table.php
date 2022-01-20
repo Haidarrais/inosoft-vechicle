@@ -15,10 +15,23 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->date('year');
+            $table->integer('year');
             $table->string('color');
             $table->string('price');
-            $table->string('vehicle_type');
+            $table->morphs('vehicle');
+            $table->timestamps();
+        });
+        Schema::create('cars', function (Blueprint $table) {
+            $table->id();
+            $table->string('machine');
+            $table->string('capacity');
+            $table->string('car_type');
+            $table->timestamps();
+        });
+        Schema::create('motorcycles', function (Blueprint $table) {
+            $table->id();
+            $table->string('transmision_type');
+            $table->string('suspension_type');
             $table->timestamps();
         });
     }
@@ -31,5 +44,7 @@ class CreateVehiclesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('motorcyles');
+        Schema::dropIfExists('cars');
     }
 }

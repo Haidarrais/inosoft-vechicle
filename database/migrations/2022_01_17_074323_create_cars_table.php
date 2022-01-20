@@ -13,13 +13,13 @@ class CreateCarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cars', function (Blueprint $table) {
-            $table->string('vehicle_id');
-            $table->string('machine');
-            $table->string('capacity');
-            $table->string('type');
-            $table->timestamps();
-        });
+        // Schema::create('cars', function (Blueprint $table) {
+        //     $table->string('vehicle_id');
+        //     $table->string('machine');
+        //     $table->string('capacity');
+        //     $table->string('type');
+        //     $table->timestamps();
+        // });
     }
 
     /**

@@ -13,4 +13,8 @@ class Motorcycle extends Model{
     ];
 
     // public $timestamps = false;
+    public function vehicle()
+    {
+        return $this->morphOne(User::class, 'vehicle');
+    }
 }

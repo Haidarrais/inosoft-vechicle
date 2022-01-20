@@ -9,8 +9,13 @@ class Car extends Model{
     protected $fillable = [
         'vehicle_id',
         'machine',
-        'type'
+        'car_type'
     ];
 
     // public $timestamps = false;
+
+    public function vehicle()
+    {
+        return $this->morphOne(User::class, 'vehicle');
+    }
 }

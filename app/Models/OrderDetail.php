@@ -20,4 +20,8 @@ class OrderDetail extends Model{
     {
         return $this->belongsTo(Stock::class);
     }
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

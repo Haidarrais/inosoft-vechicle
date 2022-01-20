@@ -13,12 +13,12 @@ class CreateMotorcyclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('motorcycles', function (Blueprint $table) {
-            $table->string('vehicle_id');
-            $table->string('transmision_type');
-            $table->string('suspension_type');
-            $table->timestamps();
-        });
+        // Schema::create('motorcycles', function (Blueprint $table) {
+        //     $table->string('vehicle_id');
+        //     $table->string('transmision_type');
+        //     $table->string('suspension_type');
+        //     $table->timestamps();
+        // });
     }
 
     /**

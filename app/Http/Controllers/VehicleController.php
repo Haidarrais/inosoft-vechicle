@@ -26,14 +26,30 @@ class VehicleController extends Controller
         return $this->vehicleRepository->getAllVehicles();
     }
 
-    public function getVehicleByType($type)
+    public function getVehicleCars()
     {
-        return $this->vehicleRepository->getAllVehicleByType($type);
+        return $this->vehicleRepository->getAllVehicleCars();
     }
-    //
+
+    public function getVehicleMotorcycles()
+    {
+        return $this->vehicleRepository->getAllVehicleMotorcycles();
+
+    }
+    //dont forget to add request validation inside VehicleStoreRequest if adding new vehicle type
     public function store(VehicleStoreRequest $request)
     {
         return $this->vehicleRepository->store($request->all());
+    }
+
+    public function getOrderDetailsByVehicleId($vehicleId)
+    {
+        return $this->vehicleRepository->getOrderDetailsByVehicleId($vehicleId);
+    }
+
+    public function getAllOrderDetails()
+    {
+        return $this->vehicleRepository->getAllOrderDetails();
     }
 
 }

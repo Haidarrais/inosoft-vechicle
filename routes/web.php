@@ -23,8 +23,27 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Route "/api/login
     $router->post('login', 'AuthController@login');
+    $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
+        $router->group(['prefix' => 'kendaraan'], function () use ($router) {
+            $router->get('/', 'VehicleController@index');
+            $router->post('/', 'VehicleController@store');
+            $router->get('/mobil', 'VehicleController@getVehicleCars');
+            $router->get('/motor', 'VehicleController@getVehicleMotorcycles');
+            $router->get('/penjualan', 'VehicleController@getAllOrderDetails');
+            $router->get('/penjualan/{vehicleId}', 'VehicleController@getOrderDetailsByVehicleId');
+        });
 
-    $router->get('kendaraan', 'VehicleController@index');
-    $router->post('kendaraan', 'VehicleController@store');
-    $router->get('kendaraan/{type}', 'VehicleController@getVehicleByType');
+        $router->group(['prefix' => 'stock'], function () use ($router) {
+            $router->get('/', 'StockController@index');
+            $router->get('/mobil', 'StockController@getStockCars');
+            $router->get('/motor', 'StockController@getStockMotorcycles');
+            $router->get('/{stockId}', 'StockController@getStockById');
+            $router->get('/kendaraan/{vehicleId}', 'StockController@getStockByVehicleId');
+        });
+
+        $router->group(['prefix' => 'order'], function () use ($router) {
+            $router->get('/', 'OrderController@index');
+            $router->post('/', 'OrderController@placeOrder');
+        });
+    });
 });
