@@ -11,7 +11,7 @@ class Stock extends Model{
         'qty'
     ];
 
-    // public $timestamps = false;
+    public $timestamps = true;
 
     public function vehicle()
     {

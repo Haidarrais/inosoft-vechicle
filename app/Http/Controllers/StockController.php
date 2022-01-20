@@ -34,4 +34,12 @@ class StockController extends Controller{
     {
         return $this->stockRepository->getStockById($stockId);
     }
+    public function storeUpdate(Request $request)
+    {
+        $this->validate($request,[
+            'vehicle_id' => 'required',
+            'qty' => 'required',
+        ]);
+        return $this->stockRepository->updateStock($request->vehicle_id, $request->except(['vehicle_id']));
+    }
 }

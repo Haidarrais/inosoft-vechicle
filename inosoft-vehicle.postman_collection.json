@@ -154,6 +154,79 @@
 			"response": []
 		},
 		{
+			"name": "Update Stock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "1999",
+							"type": "default"
+						},
+						{
+							"key": "color",
+							"value": "Red",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "2000000",
+							"type": "default"
+						},
+						{
+							"key": "vehicle_type",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "car_type",
+							"value": "mpv",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "capacity",
+							"value": "6",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "machine",
+							"value": "3000",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "suspension_type",
+							"value": "Fork",
+							"type": "default"
+						},
+						{
+							"key": "transmision_type",
+							"value": "MT",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "All Vehicle",
 			"request": {
 				"method": "GET",

@@ -35,6 +35,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         $router->group(['prefix' => 'stock'], function () use ($router) {
             $router->get('/', 'StockController@index');
+            $router->post('/update', 'StockController@storeUpdate');
             $router->get('/mobil', 'StockController@getStockCars');
             $router->get('/motor', 'StockController@getStockMotorcycles');
             $router->get('/{stockId}', 'StockController@getStockById');

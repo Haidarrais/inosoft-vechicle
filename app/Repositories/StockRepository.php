@@ -124,12 +124,15 @@ class StockRepository implements StockRepositoryInterface
     public function updateStock($StockId, array $newDetails) 
     {
         try {
-            $stock = Stock::whereId($StockId)->update($newDetails);
+            $stock = Stock::where('vehicle_id', $StockId)->first();
+
+            $stock->qty = $newDetails['qty'];
+            $stock->save();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Stock updated successfully',
-                'data'    => $stock
+                'data'    => $stock->with('vehicle.vehicle')->first()
             ],200);
         } catch (\Throwable $th) {
             return response()->json([

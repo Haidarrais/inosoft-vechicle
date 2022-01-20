@@ -10,4 +10,5 @@ interface StockRepositoryInterface
     public function getStockByVehicleId($vehicleId);
     public function getStockById($stockId);
     public function freshStock($vehicleId);
+    public function updateStock($vehicleId, array $newDetails);
 }
