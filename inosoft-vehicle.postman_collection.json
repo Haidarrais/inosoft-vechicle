@@ -129,14 +129,12 @@
 						{
 							"key": "suspension_type",
 							"value": "Fork",
-							"type": "default",
-							"disabled": true
+							"type": "default"
 						},
 						{
 							"key": "transmision_type",
 							"value": "MT",
-							"type": "default",
-							"disabled": true
+							"type": "default"
 						}
 					]
 				},
@@ -286,7 +284,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/stock",
+					"raw": "http://localhost:8000/api/stock/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -294,19 +292,20 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"stock"
+						"stock",
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Stock by VehicleID AND StockID",
+			"name": "Stock by VehicleID",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/stock",
+					"raw": "http://localhost:8000/api/stock/kendaraan/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -314,7 +313,9 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"stock"
+						"stock",
+						"kendaraan",
+						"1"
 					]
 				}
 			},
@@ -369,7 +370,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user\": 1,\r\n    \"order\":{\r\n        \"0\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 2\r\n            },\r\n        \"1\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 2\r\n            }\r\n    }\r\n}",
+					"raw": "{\r\n        \"0\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 1\r\n            },\r\n        \"1\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 1\r\n            }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -9,7 +9,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Stock;
 use Exception;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderRepository implements OrderRepositoryInterface 
@@ -106,12 +106,12 @@ class OrderRepository implements OrderRepositoryInterface
         DB::beginTransaction();
         $subtotal = 0;
         $order = new Order;
-        $order->user_id = $orderWithDetails["user"];
+        $order->user_id = Auth::user()->id;
         $order->subtotal = $subtotal;
         $order->save();
         try {
             //code...
-            foreach ($orderWithDetails["order"] as $key => $value) {
+            foreach ($orderWithDetails as $key => $value) {
                 $orderDetail = new OrderDetail;
                 DB::table('order_details')
                 ->insert([
