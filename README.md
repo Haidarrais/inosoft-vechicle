@@ -11,7 +11,7 @@ composer install
 ```bash
 php artisan migrate
 ```
-5. go to public directory
+5. go to public directory.
 ```bash
 cd /public
 ```
@@ -19,4 +19,5 @@ cd /public
 ```bash
 php -S localhost:8000
 ```
-7. test with postman or others API tester.
+7. Open postman.
+8. import postman collection named inosoft-vehicle.postman_collection.json on root directory.

@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "3b965701-67b8-420c-95c9-7a10407f2e50",
+		"name": "inosoft-vehicle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Haidar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "haidarraisabd@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "C@tur123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "haidarraisabd@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "C@tur123",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vehicle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "year",
+							"value": "1999",
+							"type": "default"
+						},
+						{
+							"key": "color",
+							"value": "Red",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "2000000",
+							"type": "default"
+						},
+						{
+							"key": "vehicle_type",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "car_type",
+							"value": "mpv",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "capacity",
+							"value": "6",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "machine",
+							"value": "3000",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "suspension_type",
+							"value": "Fork",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "transmision_type",
+							"value": "MT",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Vehicle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vehicle Sale By ID (Penjualan)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan/penjualan/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"penjualan",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Vehicle Sale (Penjualan)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan/penjualan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"penjualan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Mobil",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan/mobil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"mobil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Motor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/kendaraan/motor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"motor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock by VehicleID AND StockID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Mobil Stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/stock/mobil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock",
+						"mobil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Motor Stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/stock/motor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"stock",
+						"motor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": 1,\r\n    \"order\":{\r\n        \"0\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 2\r\n            },\r\n        \"1\": {\r\n            \"stock_id\" : 1,\r\n            \"qty\" : 2\r\n            }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MjYzNzg3MSwiZXhwIjoxNjQyNjQxNDcxLCJuYmYiOjE2NDI2Mzc4NzEsImp0aSI6Iko4aGE1aWt2SE9CVUx3R0EiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.xOK18QNkkdcv8o15_J0A3v9RCyFVdDI4BKMoC6UqcVw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
