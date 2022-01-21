@@ -23,6 +23,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Route "/api/login
     $router->post('login', 'AuthController@login');
+
     $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
         $router->group(['prefix' => 'kendaraan'], function () use ($router) {
             $router->get('/', 'VehicleController@index');

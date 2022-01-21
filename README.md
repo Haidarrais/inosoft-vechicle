@@ -1,5 +1,5 @@
 # inosoft-vehicle
-Inosoft Test Vehicle REST API
+Inosoft Test Vehicle REST API (PHP 8)
 How to run
 1. open terminal
 2. initiate composer 
