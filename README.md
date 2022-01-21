@@ -4,7 +4,7 @@ How to run
 1. open terminal
 2. initiate composer 
 ```bash
-composer install
+composer install --ignore-platform-reqs
 ```
 3. setting your .env with prepared clean database
 4. now run 
