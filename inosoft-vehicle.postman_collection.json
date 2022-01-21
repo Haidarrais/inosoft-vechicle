@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3b965701-67b8-420c-95c9-7a10407f2e50",
+		"_postman_id": "95100cee-d3fa-4146-af26-c835cfff1a17",
 		"name": "inosoft-vehicle",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -162,57 +162,19 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "year",
-							"value": "1999",
-							"type": "default"
-						},
-						{
-							"key": "color",
-							"value": "Red",
-							"type": "default"
-						},
-						{
-							"key": "price",
-							"value": "2000000",
-							"type": "default"
-						},
-						{
-							"key": "vehicle_type",
+							"key": "vehicle_id",
 							"value": "1",
 							"type": "default"
 						},
 						{
-							"key": "car_type",
-							"value": "mpv",
-							"type": "default",
-							"disabled": true
-						},
-						{
-							"key": "capacity",
-							"value": "6",
-							"type": "default",
-							"disabled": true
-						},
-						{
-							"key": "machine",
-							"value": "3000",
-							"type": "default",
-							"disabled": true
-						},
-						{
-							"key": "suspension_type",
-							"value": "Fork",
-							"type": "default"
-						},
-						{
-							"key": "transmision_type",
-							"value": "MT",
+							"key": "qty",
+							"value": "1000",
 							"type": "default"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/kendaraan",
+					"raw": "http://localhost:8000/api/stock/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -220,7 +182,8 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"kendaraan"
+						"stock",
+						"update"
 					]
 				}
 			},
@@ -471,7 +434,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MjYzNzg3MSwiZXhwIjoxNjQyNjQxNDcxLCJuYmYiOjE2NDI2Mzc4NzEsImp0aSI6Iko4aGE1aWt2SE9CVUx3R0EiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.xOK18QNkkdcv8o15_J0A3v9RCyFVdDI4BKMoC6UqcVw",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0Mjc0MjI2MiwiZXhwIjoxNjQyNzQ1ODYyLCJuYmYiOjE2NDI3NDIyNjIsImp0aSI6Ik5YaFlyelRrU1hKWkl3T00iLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.ZEQjeqc-X-1pYb-lsrw5N1YYRE2WCGuqx9j0ysC5M10",
 				"type": "string"
 			}
 		]
