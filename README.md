@@ -10,6 +10,10 @@ composer install --ignore-platform-reqs
 4. now run 
 ```bash
 php artisan migrate
+php artisan key:generate
+php artisan jwt:secret
+php artisan cache:clear
+php artisan config:clear
 ```
 5. go to public directory.
 ```bash
